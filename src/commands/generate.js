@@ -11,27 +11,39 @@ module.exports = {
     const type = parameters.first
     const name = parameters.second
 
+    const path =
+      parameters.options && parameters.options.path
+        ? parameters.options.path
+        : 'src/components'
+
     if (type === 'component') {
       await generate({
         template: 'component.js.ejs',
-        target: `src/components/${name}/${name}.js`,
+        target: `${path}/${name}/${name}.js`,
         props: { name }
       })
-      info(`Generated file at components/${name}/${name}.js`)
+      info(`Generated file at ${path}/${name}/${name}.js`)
+
+      await generate({
+        template: 'test.js.ejs',
+        target: `${path}/${name}/${name}.test.js`,
+        props: { name }
+      })
+      info(`Generated file at ${path}/${name}/${name}.test.js`)
 
       await generate({
         template: 'index.js.ejs',
-        target: `src/components/${name}/index.js`,
+        target: `${path}/components/${name}/index.js`,
         props: { name }
       })
-      info(`Generated file at components/${name}/index.js`)
+      info(`Generated file at ${path}/components/${name}/index.js`)
 
       await generate({
         template: 'story.js.ejs',
-        target: `src/components/${name}/${name}.stories.js`,
+        target: `${path}/components/${name}/${name}.stories.js`,
         props: { name }
       })
-      info(`Generated file at components/${name}/${name}.stories.js`)
+      info(`Generated file at ${path}/components/${name}/${name}.stories.js`)
     }
   }
 }
