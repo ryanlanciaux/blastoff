@@ -9,6 +9,11 @@ module.exports = {
       config
     } = toolbox
 
+    function getTypePath(type) {
+      const upperType = type.replace(/^\w/, c => c.toUpperCase())
+      return config[`default${upperType}Path`] || `src/${type}s`
+    }
+
     const extension = config.useTypeScript ? 'ts' : 'js'
     const componentExtension = config.useTypeScript ? 'tsx' : 'js'
 
@@ -20,7 +25,7 @@ module.exports = {
       const defaultPath =
         parameters.options && parameters.options.path
           ? parameters.options.path
-          : `src/${type}s`
+          : getTypePath(type)
 
       // Setup path getters
       const defaultGetComponentPath = (path, name, extension, parameters) =>
@@ -31,6 +36,8 @@ module.exports = {
         `${path}/${name}/${name}.stories.${extension}`
       const defaultGetTestPath = (path, name, extension, parameters) =>
         `${path}/${name}/${name}.test.${extension}`
+      const defaultGetStyledPath = (path, name, extension, parameters) =>
+        `${path}/${name}/${name}.styles.${extension}`
 
       const componentPath = (config.getComponentPath ||
         defaultGetComponentPath)(
@@ -52,6 +59,14 @@ module.exports = {
         componentExtension,
         parameters
       )
+
+      const styledPath = (config.getStyledPath || defaultGetStyledPath)(
+        defaultPath,
+        name,
+        componentExtension,
+        parameters
+      )
+
       const testPath = (config.getTestPath || defaultGetTestPath)(
         defaultPath,
         name,
@@ -86,15 +101,29 @@ module.exports = {
       }
 
       if (
-        parameters.options['noStory'] === undefined ||
-        parameters.options['noStory'] === false
+        config.useStorybook !== false &&
+        (parameters.options['noStory'] === undefined ||
+          parameters.options['noStory'] === false)
       ) {
         await generate({
-          template: 'story.js.ejs',
+          template: 'styled.js.ejs',
           target: storyPath,
           props: { name }
         })
         info(`Generated file at ${storyPath}`)
+      }
+
+      if (
+        (config.useStyledComponents &&
+          parameters.options['noStyled'] === undefined) ||
+        parameters.options['noStyled'] === false
+      ) {
+        await generate({
+          template: 'story.js.ejs',
+          target: styledPath,
+          props: { name }
+        })
+        info(`Generated file at ${styledPath}`)
       }
     }
   }

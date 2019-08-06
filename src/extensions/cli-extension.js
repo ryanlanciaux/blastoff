@@ -1,4 +1,3 @@
-
 // add your CLI-specific functionality here, which will then be accessible
 // to your commands
 module.exports = toolbox => {
@@ -11,6 +10,6 @@ module.exports = toolbox => {
   // blastoff.config.json, etc.
   toolbox.config = {
     ...toolbox.config,
-    ...toolbox.config.loadConfig(process.cwd(), "blastoff")
+    ...toolbox.config.loadConfig('blastoff', process.cwd())
   }
 }
