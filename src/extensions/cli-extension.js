@@ -9,8 +9,8 @@ module.exports = toolbox => {
   // enable this if you want to read configuration in from
   // the current folder's package.json (in a "blastoff" property),
   // blastoff.config.json, etc.
-  // toolbox.config = {
-  //   ...toolbox.config,
-  //   ...toolbox.config.loadConfig(process.cwd(), "blastoff")
-  // }
+  toolbox.config = {
+    ...toolbox.config,
+    ...toolbox.config.loadConfig(process.cwd(), "blastoff")
+  }
 }
