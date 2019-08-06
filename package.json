@@ -1,6 +1,6 @@
 {
   "name": "@blastoff/blastoff",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "blastoff CLI",
   "bin": {
     "blastoff": "bin/blastoff"
