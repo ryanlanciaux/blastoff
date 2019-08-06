@@ -1,8 +1,8 @@
 {
-  "name": "blastoff",
+  "name": "@blastoff/blastoff",
   "version": "0.0.1",
   "description": "blastoff CLI",
-  "private": true,
+  "private": false,
   "bin": {
     "blastoff": "bin/blastoff"
   },
