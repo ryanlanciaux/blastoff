@@ -12,7 +12,7 @@ module.exports = {
     const name = parameters.second
 
     // pages and components use the same structure
-    if (type === 'component' || type === 'page') {
+    if (type === 'component' || type === 'page' || type === 'screen') {
       const path =
         parameters.options && parameters.options.path
           ? parameters.options.path
