@@ -8,7 +8,7 @@ A basic CLI for generating components / pages.
 
 ## Commands
 
-`blastoff g {component|page|screen}`
+`blastoff g {component|page|screen} Name` (e.g. `blastoff g component Button`)
 
 This will create a component / page / screen along with a storybook story, test, and index file. The test is assuming that you have react-testing-library installed
 
