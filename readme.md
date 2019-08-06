@@ -1,6 +1,10 @@
-# blastoff CLI
+# blastoff CLI 
 
 A basic CLI for generating components / pages.
+
+## Installation
+
+`npm install -g @blastoff/blastoff`
 
 ## Commands
 
