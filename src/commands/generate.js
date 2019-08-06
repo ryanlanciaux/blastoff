@@ -11,12 +11,13 @@ module.exports = {
     const type = parameters.first
     const name = parameters.second
 
-    const path =
-      parameters.options && parameters.options.path
-        ? parameters.options.path
-        : 'src/components'
+    // pages and components use the same structure
+    if (type === 'component' || type === 'page') {
+      const path =
+        parameters.options && parameters.options.path
+          ? parameters.options.path
+          : `src/${type}s`
 
-    if (type === 'component') {
       await generate({
         template: 'component.js.ejs',
         target: `${path}/${name}/${name}.js`,
@@ -25,25 +26,35 @@ module.exports = {
       info(`Generated file at ${path}/${name}/${name}.js`)
 
       await generate({
-        template: 'test.js.ejs',
-        target: `${path}/${name}/${name}.test.js`,
-        props: { name }
-      })
-      info(`Generated file at ${path}/${name}/${name}.test.js`)
-
-      await generate({
         template: 'index.js.ejs',
-        target: `${path}/components/${name}/index.js`,
+        target: `${path}/${name}/index.js`,
         props: { name }
       })
-      info(`Generated file at ${path}/components/${name}/index.js`)
+      info(`Generated file at ${path}/${name}/index.js`)
 
-      await generate({
-        template: 'story.js.ejs',
-        target: `${path}/components/${name}/${name}.stories.js`,
-        props: { name }
-      })
-      info(`Generated file at ${path}/components/${name}/${name}.stories.js`)
+      if (
+        parameters.options['noTest'] === undefined ||
+        parameters.options['noTest'] === false
+      ) {
+        await generate({
+          template: 'test.js.ejs',
+          target: `${path}/${name}/${name}.test.js`,
+          props: { name }
+        })
+        info(`Generated file at ${path}/${name}/${name}.test.js`)
+      }
+
+      if (
+        parameters.options['noStory'] === undefined ||
+        parameters.options['noStory'] === false
+      ) {
+        await generate({
+          template: 'story.js.ejs',
+          target: `${path}/${name}/${name}.stories.js`,
+          props: { name }
+        })
+        info(`Generated file at ${path}/${name}/${name}.stories.js`)
+      }
     }
   }
 }
