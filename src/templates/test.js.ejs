@@ -5,4 +5,5 @@ import <%= props.name %> from './<%= props.name %>';
 
 it("matches snapshot for <%= props.name %>", () => {
   const { container } = render(<h1>Hi</h1>);
+  expect(container).toMatchSnapshot();
 })
