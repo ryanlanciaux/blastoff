@@ -106,7 +106,7 @@ module.exports = {
           parameters.options['noStory'] === false)
       ) {
         await generate({
-          template: 'styled.js.ejs',
+          template: 'story.js.ejs',
           target: storyPath,
           props: { name }
         })
@@ -119,7 +119,7 @@ module.exports = {
         parameters.options['noStyled'] === false
       ) {
         await generate({
-          template: 'story.js.ejs',
+          template: 'styled.js.ejs',
           target: styledPath,
           props: { name }
         })
