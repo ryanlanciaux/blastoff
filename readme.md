@@ -1,25 +1,15 @@
 # blastoff CLI
 
-A CLI for blastoff.
+A basic CLI for generating components / pages.
 
-## Customizing your CLI
+## Commands
 
-Check out the documentation at https://github.com/infinitered/gluegun/tree/master/docs.
+`blastoff g {component|page|screen}`
 
-## Publishing to NPM
+This will create a component / page / screen along with a storybook story, test, and index file. The test is assuming that you have react-testing-library installed
 
-To package your CLI up for NPM, do this:
+## Options
 
-```shell
-$ npm login
-$ npm whoami
-$ npm lint
-$ npm test
-(if typescript, run `npm run build` here)
-$ npm publish
-```
-
-# License
-
-MIT - see LICENSE
-
+- `--path` - the path where the parent folder should be created defaults to `/src/components/`, `src/pages/`, or `/src/screens/`
+- `--noStory` - skip creating a story
+- `--noTest` - skip creating a test
