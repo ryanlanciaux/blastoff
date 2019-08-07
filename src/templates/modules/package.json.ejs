@@ -1,0 +1,52 @@
+{
+  "name": "<%= props.fullName %>",
+  "version": "0.0.1",
+  "main": "dist/<%= props.name %>.js",
+  "umd:main": "dist/<%= props.name %>.umd.js",
+  "module": "dist/<%= props.name %>.m.js",
+  "source": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "microbundle -o dist/ --sourcemap false --no-compress --jsx React.createElement",
+    "dev": "microbundle watch -o dist/ --sourcemap false --no-compress --jsx React.createElement",
+    "test": "jest --coverage --config=jest.config.js",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+  },
+  "keywords": [
+    "react",
+    "utils"
+  ],
+  "resolutions": {
+    "@babel/core": "^7.5.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^8.0.8",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.6",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react-hooks": "next",
+    "jest": "^23.6.0",
+    "jest-dom": "^3.0.0",
+    "microbundle": "^0.11.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-test-renderer": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "dependencies": {}
+}
