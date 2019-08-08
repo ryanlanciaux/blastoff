@@ -31,7 +31,6 @@ module.exports = {
       const fullName =
         namespace !== undefined ? `${namespace}/${localName}` : localName
 
-      console.log('CONFIG', config)
       // Get path 1) From flag if available 2) From config 3) Fallback to using just name
       const modulePath =
         parameters.options && parameters.options.path
