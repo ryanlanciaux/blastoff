@@ -22,6 +22,7 @@ module.exports = {} = async function generateComponent({
         props: { name }
       })
       info(`Generated file at ${styledPath}`)
+      helpers.runHook(config, parameters, styledPath)
     }
   }
 }

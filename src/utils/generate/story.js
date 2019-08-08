@@ -22,6 +22,7 @@ module.exports = {} = async function generateComponent({
         props: { name }
       })
       info(`Generated file at ${storyPath}`)
+      helpers.runHook(config, parameters, storyPath)
     }
   }
 }

@@ -1,3 +1,4 @@
+const helpers = require('../helpers')
 const baseValidators = require('../validators')
 
 module.exports = {} = async function generateModule({
@@ -54,5 +55,6 @@ module.exports = {} = async function generateModule({
     })
 
     info(`Created module at ${modulePath}`)
+    helpers.runHook(config, parameters, modulePath)
   }
 }

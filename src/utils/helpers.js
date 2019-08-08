@@ -24,9 +24,12 @@ module.exports.getNameType = function getNameType(parameters) {
   return { name, type }
 }
 
-module.exports.getTypePath = function getTypePath(type, config) {
-  const upperType = type.replace(/^\w/, c => c.toUpperCase())
+function getCapitalized(word) {
+  return word.replace(/^\w/, c => c.toUpperCase())
+}
 
+module.exports.getTypePath = function getTypePath(type, config) {
+  const upperType = getCapitalized(type)
   return config[`default${upperType}Path`] || `src/${type}s`
 }
 
@@ -89,4 +92,13 @@ module.exports.getStyledPath = function getStoryPath(config, parameters) {
 
 module.exports.getTestPath = function getTestPath(config, parameters) {
   return getPath(config, parameters, config.getTestPath || defaultGetTestPath)
+}
+
+module.exports.runHook = function runHook(config, parameters, path) {
+  const { name, type } = module.exports.getNameType(parameters)
+  const upperType = getCapitalized(type)
+
+  if (config[`after${upperType}`]) {
+    config[`after${upperType}`]({ name, type, path, parameters })
+  }
 }
