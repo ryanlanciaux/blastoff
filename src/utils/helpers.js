@@ -99,6 +99,6 @@ module.exports.runHook = function runHook(config, parameters, path) {
   const upperType = getCapitalized(type)
 
   if (config[`after${upperType}`]) {
-    config[`after${upperType}`]({ name, type, path, parameters })
+    config[`after${upperType}`]({ name, type, path, parameters, config })
   }
 }
